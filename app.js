@@ -9,9 +9,11 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+
 //Database Connection - try to connect an log a pass/fail result!
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://TomMarazzo:Camendog5!@clustertaskmanager.hpr9h.mongodb.net/tasks',
+const globals = require('./config/globals')
+mongoose.connect(globals.db,
    {
       useNewUrlParser: true,
       useUnifiedTopology: true
