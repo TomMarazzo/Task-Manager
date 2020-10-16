@@ -1,1 +1,41 @@
 <h1>Task Manager</h1>
+
+<a href="/tasks/add"> Add a New task</a>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>Name</th>
+        <th>Priority</th>
+        <th>Complete</th>
+    </tr>
+
+    {{#each tasks}}
+    <tr>
+        <td> {{this.name}} </td>
+        <td> {{this.priority}} </td>
+        <td> {{this.complete}} </td>
+    </tr>
+
+    {{/each}}
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

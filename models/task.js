@@ -3,8 +3,7 @@ const mongoose = require('mongoose')
 
 const taskSchema = new mongoose.Schema(
    {
-      name:
-      {
+      name:      {
          type: String,
          required: 'Name is Required',
          trim: true
@@ -17,4 +16,4 @@ const taskSchema = new mongoose.Schema(
    })
 
 //make this public
-module.exports = mongoose.model(name: 'Task', taskSchema)
+module.exports = mongoose.model('Task', taskSchema)
