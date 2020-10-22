@@ -6,6 +6,7 @@
         <th>Name</th>
         <th>Priority</th>
         <th>Complete</th>
+        <th>Actions</th>
     </tr>
 
     {{#each tasks}}
@@ -13,6 +14,7 @@
         <td> {{this.name}} </td>
         <td> {{this.priority}} </td>
         <td> {{this.complete}} </td>
+        <td> <a href="/tasks/delete/{{this._id}}" class="test-danger"> Delete </a></td>
     </tr>
 
     {{/each}}

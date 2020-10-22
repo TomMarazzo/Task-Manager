@@ -46,7 +46,21 @@ router.post('/add', (req, res, next) => {
       }
    })
 })
-
+//GET tasks/delete/ - colon in teh path represents a URL parameter
+router.get('/detete/:_id', (req, res, next) => {
+   //stoire the selected id in a local variable
+   var _id = req.params._id;
+   //Use Mongoose to delete the selected document from the DB
+   Task.remove({ _id: _id }, (err) => {
+      if (err) {
+         consol.log(err)
+         res.end(err)
+      }
+      else {
+         res.redirect('/tasks')
+      }
+   })
+})
 
 //exposes this file as public
 module.exports = router;
