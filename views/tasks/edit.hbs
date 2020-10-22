@@ -20,15 +20,15 @@
                     //create a new option inside the select element
                     var option = document.createElement('option')
                     //display the current counter as athe new option text
-                    option.innerHTML = i = toString()
+                    option.innerHTML = i.toString()
                     //if the new option matches the task priority mark the option as selected
                     if ({{task.priority}} == i.toString())
-                        {
-                        option.selected = true
-                        }
+                    {
+                     option.selected = true
+                    }
                 //add new <option> element to the <select> object
-                priority.append(option)
-                }
+                    priority.append(option)
+                 }
             </script>
         </select>
     </fieldset>
