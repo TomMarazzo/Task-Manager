@@ -5,14 +5,11 @@
         <label class="control-label col-md-2"> Name: *</label>
         <input name="name" id="name" required value="{{ tasks.name }}" />
     </fieldset>
-    <!--<fieldset class="form-group">
-        <label class="control-label col-md-2"> Complete: *</label>
-        <checkbox name="complete" id="complete" />
-    </fieldset>-->
+    
     <fieldset class="form-group">
         <label class="control-label col-md-2"> Priority: *</label>
         <select name="priority" id="priority">
-            <script>
+            <script type="text/javascript">
                 //ref the selected element
                 var priority = document.getElementById('priority')
                 for (var i = 1; i <= 5; i++)
