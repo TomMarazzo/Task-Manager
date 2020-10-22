@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
    //if not, the tasks parameter will be filled with the query result
    Task.find((err, tasks) => {
       if (err) {
-         consol.log(err)
+         console.log(err)
          res.end(err)
       }
       else {
@@ -38,7 +38,7 @@ router.post('/add', (req, res, next) => {
       priority: req.body.priority
    }, (err, task) => {
       if (err) {
-         consol.log(err)
+         console.log(err)
          res.end(err)
       }
       else {
@@ -46,6 +46,7 @@ router.post('/add', (req, res, next) => {
       }
    })
 })
+
 //GET tasks/delete/ - colon in teh path represents a URL parameter
 router.get('/detete/:_id', (req, res, next) => {
    //stoire the selected id in a local variable
@@ -53,7 +54,7 @@ router.get('/detete/:_id', (req, res, next) => {
    //Use Mongoose to delete the selected document from the DB
    Task.remove({ _id: _id }, (err) => {
       if (err) {
-         consol.log(err)
+         console.log(err)
          res.end(err)
       }
       else {
