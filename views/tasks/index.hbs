@@ -14,7 +14,10 @@
         <td> {{this.name}} </td>
         <td> {{this.priority}} </td>
         <td> {{this.complete}} </td>
-        <td> <a  href="/tasks/delete/{{ this._id }}" class="test-danger delete"> Delete </a></td>
+        <td>
+            <a href="/tasks/edit/{{ this._id }}"> Edit |</a>
+            <a href="/tasks/delete/{{ this._id }}" class="test-danger delete"> Delete </a>
+        </td>
     </tr>
 
     {{/each}}

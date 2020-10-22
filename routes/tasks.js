@@ -63,5 +63,24 @@ router.get('/delete/:_id', (req, res, next) => {
    })
 })
 
+//Get tasks/edit/....  populate edit for  with my existing task values
+router.get('/edit/:_id', (req, res, next) => {
+   //stoire the selected id in a local variable
+   var _id = req.params._id;
+   //use the selectedf id to look up the matching document
+   Task.findById(_id, (err, tasks) => {
+      if (err) {
+         console.log(err)
+         res.end(err)
+      }
+      else {
+         res.render('tasks/edit',
+            {
+               tasks: tasks
+            })
+      }
+   })
+})
+
 //exposes this file as public
 module.exports = router;
