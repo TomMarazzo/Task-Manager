@@ -8,6 +8,6 @@
     "\\views",
     "\\views\\tasks"
   ],
-  "SelectedNode": "\\views\\tasks\\index.hbs",
+  "SelectedNode": "\\routes\\tasks.js",
   "PreviewInSolutionExplorer": false
 }

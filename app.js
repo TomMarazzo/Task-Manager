@@ -59,9 +59,10 @@ app.use(function (err, req, res, next) {
    res.render('error');
 });
 
+//*********************
+
 // helper method to select the proper value in a drop down list
 var hbs = require('hbs')
-//*********************
 hbs.registerHelper('createOption', (currentValue, selectedValue) => {
    // if the 2 values match, add the text ' selected', otherwise add an empty string
    //var selectedProperty = currentValue === selectedValue ? ' selected' : ''
@@ -73,6 +74,8 @@ hbs.registerHelper('createOption', (currentValue, selectedValue) => {
    return new hbs.SafeString('<option' + selectedProperty + '>' + currentValue + '</option>')
 })
 //***********************************
+
+
 module.exports = app;
 
 

@@ -117,22 +117,22 @@ router.get('/edit/:_id', (req, res, next) => {
    })
 })
 
-//// POST /tasks/edit/:_id -> updated selected task document
-//router.post('/edit/:_id',  (req, res, next) => {
-//   Task.findOneAndUpdate({ _id: req.params._id },
-//      {
-//         name: req.body.name,
-//         task: req.body.task
-//      }, (err, task) => {
-//         if (err) {
-//            console.log(err)
-//            res.send(err)
-//         }
-//         else {
-//            res.redirect('/tasks')
-//         }
-//      })
-//})
+// POST /tasks/edit/:_id -> updated selected task document
+router.post('/edit/:_id',  (req, res, next) => {
+   Task.findOneAndUpdate({ _id: req.params._id },
+      {
+         name: req.body.name,
+         task: req.body.task
+      }, (err, task) => {
+         if (err) {
+            console.log(err)
+            res.send(err)
+         }
+         else {
+            res.redirect('/tasks')
+         }
+      })
+})
 
 //exposes this file as public
 module.exports = router;
