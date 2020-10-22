@@ -3,7 +3,7 @@
 <form method="post">
     <fieldset class="form-group">
         <label class="control-label col-md-2"> Name: *</label>
-        <input name="name" id="name" required value="{{ task.name }}" />
+        <input name="name" id="name" required value="{{ tasks.name }}" />
     </fieldset>
     <!--<fieldset class="form-group">
         <label class="control-label col-md-2"> Complete: *</label>
@@ -12,12 +12,34 @@
     <fieldset class="form-group">
         <label class="control-label col-md-2"> Priority: *</label>
         <select name="priority" id="priority">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            <script>
+                //ref the selected element
+                var priority = document.getElementById('priority')
+                for (var i = 1; i <= 5; i++)
+                {
+                    //create a new option inside the select element
+                    var option = document.createElement('option')
+                    //display the current counter as athe new option text
+                    option.innerHTML = i = toString()
+                    //if the new option matches the task priority mark the option as selected
+                    if ({{task.priority}} == i.toString())
+                        {
+                        option.selected = true
+                        }
+                //add new <option> element to the <select> object
+                priority.append(option)
+                }
+            </script>
         </select>
     </fieldset>
+    <fieldset>
+        <label class="control-label col-md-2">Complete: </label>
+        {{#if task.complete}}
+        <input type="checkbox" id="complete" name="complete" checked="checked" />
+        {{else}}
+        <input type="checkbox" id="complete" name="compete" />
+        {{/if}}
+    </fieldset>
+    <input type="hidden" name="_id" id="_id" value="{{tasks._id}}" />
     <button class="col-md-offset-2 btn btn-primary">Save</button>
 </form>
