@@ -85,12 +85,13 @@ router.get('/edit/:_id', (req, res, next) => {
 })
 
 // POST /tasks/edit/:_id -> updated selected task document
-router.post('/edit/:_id',  (req, res, next) => {
+router.post('/edit/:_id', (req, res, next) => {
    var _id = req.params._id
    //parse checkbox to a bool
    var complete = false
-   if (req.body.complete == "on")
+   if (req.body.complete == "on") {
       complete = true
+   }
    console.log('Complete: ' + req.body.complete)
 
    //instantiate a task Object with the new values from the submission
