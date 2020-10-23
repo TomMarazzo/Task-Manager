@@ -5,16 +5,33 @@
         <label class="control-label col-md-2"> Name: *</label>
         <input name="name" id="name" required value="{{ tasks.name }}" />
     </fieldset>
-
+    <!--<fieldset class="form-group">
+        <label class="control-label col-md-2"> Complete: *</label>
+        <checkbox name="complete" id="complete" />
+    </fieldset>-->
     <fieldset class="form-group">
-        <label for="priority" class="col-sm-2">Priority: *</label>
-        <select name="priority" id="priority" required>
-            {{#each priorities}}
-            {{createOption this.name ../tasks.priority}}
-            {{/each}}
+        <label class="control-label col-md-2"> Priority: *</label>
+        <select name="priority" id="priority">
+            <script>
+                //ref the selected element
+                var priority = document.getElementById('priority')
+                for (var i = 1; i <= 5; i++)
+                {
+                    //create a new option inside the select element
+                    var option = document.createElement('option')
+                    //display the current counter as athe new option text
+                    option.innerHTML = i.toString()
+                    //if the new option matches the task priority mark the option as selected
+                    if ({{task.priority}} == i.toString())
+                    {
+                     option.selected = true
+                    }
+                //add new <option> element to the <select> object
+                    priority.append(option)
+                 }
+            </script>
         </select>
     </fieldset>
-
     <fieldset>
         <label class="control-label col-md-2">Complete: </label>
         {{#if task.complete}}

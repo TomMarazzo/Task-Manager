@@ -66,6 +66,62 @@ router.get('/delete/:_id', (req, res, next) => {
 })
 
 //Get tasks/edit/....  populate edit for  with my existing task values
+router.get('/edit/:_id', (req, res, next) => {
+   //stoire the selected id in a local variable
+   var _id = req.params._id;
+   //use the selectedf id to look up the matching document
+   Task.findById(_id, (err, tasks) => {
+      if (err) {
+         console.log(err)
+         res.end(err)
+      }
+      else {
+         res.render('tasks/edit',
+            {
+               tasks: tasks
+            })
+      }
+   })
+})
+
+// POST /tasks/edit/:_id -> updated selected task document
+router.post('/edit/:_id',  (req, res, next) => {
+   var _id = req.params._id
+   //parse checkbox to a bool
+   var complete = false
+   if (req.body.complete == "on")
+      complete = true
+   console.log('Complete: ' + req.body.complete)
+
+   //instantiate a task Object with the new values from the submission
+   var task = new Task({
+      _id: _id,
+      name: req.body.name,
+      priority: req.body.priority,
+      complete: complete
+   })
+   Task.update({ _id: _id }, task, (err) => {
+      if (err) {
+         console.log(err)
+         res.end(err)
+      }
+      else {
+         res.redirect('/tasks')
+      }
+   })
+})
+
+
+//exposes this file as public
+module.exports = router;
+
+
+
+
+
+
+
+//Get tasks/edit/....  populate edit for  with my existing task values
 //router.get('/edit/:_id', (req, res, next) => {
 //   //stoire the selected id in a local variable
 //   //var _id = req.params._id;
@@ -92,47 +148,19 @@ router.get('/delete/:_id', (req, res, next) => {
 //   })
 //})
 
-//Get tasks/edit/....  populate edit form  with my existing task values
-router.get('/edit/:_id', (req, res, next) => {
-   Task.findById(req.params._id, (err, task) => {
-      if (err) {
-         console.log(err)
-         res.send(err)
-      }
-      else {
-         // get priority list to fill dropdown
-         Priority.find((err, priorities) => {
-            if (err) {
-               console.log(err)
-            }
-            else {
-               res.render('tasks/edit', {
-                  name: name,
-                  complete: complete,
-                  priority: priority
-               })
-            }
-         }).sort({ name: 1 })
-      }
-   })
-})
-
-// POST /tasks/edit/:_id -> updated selected task document
-router.post('/edit/:_id',  (req, res, next) => {
-   Task.findOneAndUpdate({ _id: req.params._id },
-      {
-         name: req.body.name,
-         task: req.body.task
-      }, (err, task) => {
-         if (err) {
-            console.log(err)
-            res.send(err)
-         }
-         else {
-            res.redirect('/tasks')
-         }
-      })
-})
-
-//exposes this file as public
-module.exports = router;
+//// POST /tasks/edit/:_id -> updated selected task document
+//router.post('/edit/:_id',  (req, res, next) => {
+//   Task.findOneAndUpdate({ _id: req.params._id },
+//      {
+//         name: req.body.name,
+//         task: req.body.task
+//      }, (err, task) => {
+//         if (err) {
+//            console.log(err)
+//            res.send(err)
+//         }
+//         else {
+//            res.redirect('/tasks')
+//         }
+//      })
+//})
