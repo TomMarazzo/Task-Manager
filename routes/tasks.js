@@ -1,6 +1,6 @@
 //link to the express package
 var express = require('express');
-//instanciates a new express route to handle http requests
+//instanciate a new express route to handle http requests
 var router = express.Router();
 
 //Reference the Task model
@@ -51,7 +51,7 @@ router.post('/add', (req, res, next) => {
 
 //GET tasks/delete/ - colon in teh path represents a URL parameter
 router.get('/delete/:_id', (req, res, next) => {
-   //stoire the selected id in a local variable
+   //store the selected id in a local variable
    var _id = req.params._id;
    //Use Mongoose to delete the selected document from the DB
    Task.remove({ _id: _id }, (err) => {
@@ -65,48 +65,56 @@ router.get('/delete/:_id', (req, res, next) => {
    })
 })
 
+///////////////////////
 //Get tasks/edit/....  populate edit for  with my existing task values
 router.get('/edit/:_id', (req, res, next) => {
-   //stoire the selected id in a local variable
-   var _id = req.params._id;
-   //use the selectedf id to look up the matching document
-   Task.findById(_id, (err, tasks) => {
-      if (err) {
+   //store the _id parameter in a local var
+   var _id = req.params._id
+   //use the selected _d to lookup the matching document
+   Task.findById(_id,(err,tasks) => {
+      if(err)
+      {
          console.log(err)
          res.end(err)
       }
-      else {
-         res.render('tasks/edit',
-            {
-               tasks: tasks
-            })
+      else
+      {
+      res.render('tasks/edit',
+          { tasks: tasks  })
       }
    })
 })
 
+
+
 // POST /tasks/edit/:_id -> updated selected task document
-router.post('/edit/:_id', (req, res, next) => {
+router.post('/edit/:_id', (req, res, next) =>
+{
    var _id = req.params._id
-   //parse checkbox to a bool
-   var complete = false
-   if (req.body.complete == "on") {
+//parse checkbox to a boolean
+   let complete = false
+   if(req.body.complete === "on")
+   {
       complete = true
    }
-   console.log('Complete: ' + req.body.complete)
 
-   //instantiate a task Object with the new values from the submission
+   console.log('Complete value: ' + req.body.complete)
+   //instantiate a Task object with the new values from the form submission
    var task = new Task({
       _id: _id,
       name: req.body.name,
       priority: req.body.priority,
       complete: complete
    })
-   Task.update({ _id: _id }, task, (err) => {
-      if (err) {
+   //update document with selected id, passing new task object to replace old values
+   Task.update({_id: _id}, task, (err) => {
+      if(err)
+      {
          console.log(err)
          res.end(err)
       }
-      else {
+      else
+      {
          res.redirect('/tasks')
       }
    })
@@ -124,7 +132,7 @@ module.exports = router;
 
 //Get tasks/edit/....  populate edit for  with my existing task values
 //router.get('/edit/:_id', (req, res, next) => {
-//   //stoire the selected id in a local variable
+//   //store the selected id in a local variable
 //   //var _id = req.params._id;
 //   //use the selected id to look up the matching document
 //   Task.findById(req.params._id, (err, tasks) => {
